@@ -1,0 +1,40 @@
+{
+  "name": "SafeHer",
+  "description": "Team Dirty Bits 2.0's hack for MMU's Hackathon 2.0",
+  "repository": "https://github.com/gurpreetsingh00885/safeher.git",
+  "success_url": "/home/",
+  "env": {
+    "SECRET_TOKEN": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+    "WEB_CONCURRENCY": {
+      "description": "The number of processes to run.",
+      "value": "1"
+    },
+    "NODE_ENV": {
+      "description": "The node env type to run.",
+      "value": "production"
+    },
+    "DJANGO_SETTINGS_MODULE": {
+      "description": "The django settings module to use.",
+      "value": "safeher.production_settings"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/python"
+    }
+  ]
+}

@@ -1,0 +1,334 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100);
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]#section1:checked ~ nav > label[for="section1"] {
+  background-color: white;
+}
+
+input[type="radio"]#section1:checked ~ section:nth-of-type(1) {
+  z-index: 1;
+  top: 0;
+  transition: top 0.5s ease-in-out;
+  transition-delay: 0s;
+}
+
+input[type="radio"]#section1:checked ~ .cover {
+  background-color: #eb9385;
+}
+
+input[type="radio"]#section2:checked ~ nav > label[for="section2"] {
+  background-color: white;
+}
+
+input[type="radio"]#section2:checked ~ section:nth-of-type(2) {
+  z-index: 1;
+  top: 0;
+  transition: top 0.5s ease-in-out;
+  transition-delay: 0s;
+}
+
+input[type="radio"]#section2:checked ~ .cover {
+  background-color: #99c0bc;
+}
+
+input[type="radio"]#section3:checked ~ nav > label[for="section3"] {
+  background-color: white;
+}
+
+input[type="radio"]#section3:checked ~ section:nth-of-type(3) {
+  z-index: 1;
+  top: 0;
+  transition: top 0.5s ease-in-out;
+  transition-delay: 0s;
+}
+
+input[type="radio"]#section3:checked ~ .cover {
+  background-color: #937782;
+}
+
+input[type="radio"]#section4:checked ~ nav > label[for="section4"] {
+  background-color: white;
+}
+
+input[type="radio"]#section4:checked ~ section:nth-of-type(4) {
+  z-index: 1;
+  top: 0;
+  transition: top 0.5s ease-in-out;
+  transition-delay: 0s;
+}
+
+input[type="radio"]#section4:checked ~ .cover {
+  background-color: #2d4249;
+}
+
+input[type="radio"]#section5:checked ~ nav > label[for="section5"] {
+  background-color: white;
+}
+
+input[type="radio"]#section5:checked ~ section:nth-of-type(5) {
+  z-index: 1;
+  top: 0;
+  transition: top 0.5s ease-in-out;
+  transition-delay: 0s;
+}
+
+input[type="radio"]#section5:checked ~ .cover {
+  background-color: #99c0bc;
+}
+
+
+input[type="radio"]#section6:checked ~ nav > label[for="section6"] {
+  background-color: white;
+}
+
+input[type="radio"]#section6:checked ~ section:nth-of-type(6) {
+  z-index: 1;
+  top: 0;
+  transition: top 0.5s ease-in-out;
+  transition-delay: 0s;
+}
+
+input[type="radio"]#section6:checked ~ .cover {
+  background-color: #99c0bc;
+}
+
+
+input[type="radio"]#section7:checked ~ nav > label[for="section7"] {
+  background-color: white;
+}
+
+input[type="radio"]#section7:checked ~ section:nth-of-type(7) {
+  z-index: 1;
+  top: 0;
+  transition: top 0.5s ease-in-out;
+  transition-delay: 0s;
+}
+
+input[type="radio"]#section7:checked ~ .cover {
+  background-color: #99c0bc;
+}
+
+input[type="radio"]#section8:checked ~ nav > label[for="section8"] {
+  background-color: white;
+}
+
+input[type="radio"]#section8:checked ~ section:nth-of-type(8) {
+  z-index: 1;
+  top: 0;
+  transition: top 0.5s ease-in-out;
+  transition-delay: 0s;
+}
+
+input[type="radio"]#section8:checked ~ .cover {
+  background-color: #99c0bc;
+}
+
+input[type="radio"]#section9:checked ~ nav > label[for="section9"] {
+  background-color: white;
+}
+
+input[type="radio"]#section9:checked ~ section:nth-of-type(9) {
+  z-index: 1;
+  top: 0;
+  transition: top 0.5s ease-in-out;
+  transition-delay: 0s;
+}
+
+input[type="radio"]#section9:checked ~ .cover {
+  background-color: #99c0bc;
+}
+
+.nav {
+  position: fixed;
+  z-index: 2;
+  right: 30px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.nav__item {
+  width: 12px;
+  height: 12px;
+  display: block;
+  margin: 12px auto;
+  border: solid 1px white;
+  border-radius: 65%;
+  cursor: pointer;
+}
+
+.nav__item:hover {
+  background-color: white;
+}
+
+section {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  transition-delay: 0.5s;
+}
+
+section:nth-of-type(1) {
+  background: linear-gradient(0deg, gray, gray), url("/static/img/pollution.png") no-repeat fixed;
+  background-color: white;
+  background-blend-mode: multiply, luminosity;
+  background-size: cover;
+}
+
+section:nth-of-type(2) {
+  background: red;
+}
+
+section:nth-of-type(3) {
+  background: #3c3c3c;
+}
+
+section:nth-of-type(4) {
+  background: red;
+}
+
+section:nth-of-type(5) {
+  background: #3c3c3c;
+}
+
+section:nth-of-type(6) {
+  background: red;
+}
+
+section:nth-of-type(7) {
+  background: #3c3c3c;
+}
+
+section:nth-of-type(8) {
+  background: red;
+}
+
+section:nth-of-type(9) {
+  background: #3c3c3c;
+}
+
+.cover {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+section {
+  color: white;
+}
+
+body {
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  font-size: 6em;
+  text-align: center;
+}
+
+.content .content-center {
+        flex: 1 0 auto;
+        display: flex;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+      }
+      .content .content-center .wrapper .title {
+        font-size: 144px;
+        font-weight: 100;
+        padding-left: 15px;
+        padding-right: 15px;
+        background-color: #e6e6e6;
+        color: #1784d1;
+      }
+      .content .content-center .wrapper .title span {
+        padding: 15px;
+        background-color: #1784d1;
+        color: #e6e6e6;
+      }
+      .content .content-center .wrapper h3 {
+        text-align: center;
+        font-weight: 100;
+      }
+      .content #how-to {
+        height: 25vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 400px;
+      }
+      .content #how-to .wrapper h1 {
+        display: block;
+        font-size: 3.5em;
+        font-weight: 100;
+        text-align: center;
+      }
+      .content #how-to .wrapper h3 {
+        text-align: center;
+        font-weight: 100;
+      }
+      .content #how-to .wrapper form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .content #how-to .wrapper form input[type="url"] {
+        border: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        margin-right: 15px;
+        padding: 6px;
+        font-size: 2em;
+        width: 15vw;
+        top: 30px;
+        left: 130px;
+        background: none;
+        color: #fff;
+      }
+
+a {
+  text-decoration: none;
+}
+
+p {
+  font-size: 25px;
+  display: block;
+  text-align: center;
+  font-weight: 200;
+}
+
+.description{
+  width: 50%;
+}
+
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.1); }
+
+
+h2{
+  font-size: 34px;
+  text-align: center;
+  margin: 50px;
+}
+
+
+.half_image{
+  width: 40%;
+  margin: 20px;
+}

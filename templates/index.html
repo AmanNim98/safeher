@@ -1,0 +1,85 @@
+{% load render_bundle from webpack_loader %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- AIzaSyB95K3JMG-Co63NRjbZxaabmuoYfzdJhHk -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@mapbox/corslite@0.0.7/corslite.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/polyline@0.2.0/src/polyline.min.js">
+    </script>
+    <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+      integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+      crossorigin=""></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
+    <script src="https://rawgit.com/Asymmetrik/leaflet-d3/master/dist/leaflet-d3.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script> 
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB95K3JMG-Co63NRjbZxaabmuoYfzdJhHk"></script>
+    <script src="/static/js/lrm-google.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <!-- Latest compiled and minified CSS -->
+
+    <style type="text/css">
+      html {
+        height: 100%;
+        font-family: 'Roboto', sans-serif;
+      }
+      body {
+        height: 100%;
+        font-family: 'Roboto', sans-serif;
+      }
+      .loader {
+        border: 6px solid #f3f3f3; /* Light grey */
+        border-top: 6px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: calc(50% - 20px);
+        left: calc(50% - 20px);
+        animation: spin 2s linear infinite;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      .hexbin-hexagon {
+        stroke: #000;
+        stroke-opacity: 0.5;
+        stroke-width: 0.5px;
+      }
+      .leaflet-popup-content-wrapper {
+        background: inherit;
+        color: white;
+        border-radius: 5px;
+      }
+      .leaflet-popup-tip {
+        
+      }
+      .leaflet-popup-content {
+        color: white;
+      }
+    </style>
+    <title>Way Finder</title>
+  </head>
+  <body>
+    <div id="root" style="width: 100%; height: 100%; font-family: 'Roboto', sans-serif;">
+      <center><div class="loader"></div></center>
+    </div>
+      {% render_bundle 'main' %}
+  </body>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</html>

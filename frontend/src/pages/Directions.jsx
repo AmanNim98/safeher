@@ -64,9 +64,9 @@ class Directions extends Component {
     }).addTo(mymap);
     this.setState({ mapObj: mymap }, () => {
       this.generateHexLayer();
-      mymap.locate({ setView: true }).on('locationfound', (e) => {
-        this.setState({ mapObj: mymap, latitude: e.latitude, longitude: e.longitude });
-      });
+      // mymap.locate({ setView: true }).on('locationfound', (e) => {
+      //   this.setState({ mapObj: mymap, latitude: e.latitude, longitude: e.longitude });
+      // });
     });
 
     var control = L.Routing.control({
@@ -82,43 +82,18 @@ class Directions extends Component {
       useZoomParameter: false,
       showAlternatives: true,
       addWaypoints: false,
-      lineOptions: {
-        styles: [{ color: 'black', opacity: 0.15, weight: 9 }, { color: 'white', opacity: 0.8, weight: 6 }, { color: 'black', opacity: 1, weight: 2 }]
+      routeLine: (route) => {
+        let lineColor = ['red', 'orange', 'green'][route.coordinates.length % 3];
+        let line = L.Routing.line(route, {
+          styles: [
+            {color: 'black', opacity: 0.15, weight: 9},
+            {color: 'white', opacity: 0.8, weight: 6},
+            {color: lineColor, opacity: 1, weight: 2}
+          ]
+        })
+        return line;
       },
     })
-      .on('routesfound', function (e) {
-        var routes = e.routes;
-        var elems = document.getElementsByClassName('leaflet-popup-close-button')
-        for (let i = 0; i < elems.length; i++) {
-          elems[i].click();
-        }
-        let p = [];
-        for (let i = 20; i < 100; i += ([1, 3, 5][Math.floor(Math.random() * 3)]))
-          p.push(i);
-        routes.forEach(route => {
-          let n = 0, t = 0;
-          route.coordinates.forEach(coord => {
-            t += p[Math.floor(Math.random() * p.length)];
-            n += 1;
-          });
-          let perc = parseInt(t / n, 10);
-          perc += [10, -10][Math.floor(Math.random() * 2)]
-          let classn = null;
-          if (perc < 26) {
-            classn = classes.red;
-          }
-          else if (perc < 61) {
-            classn = classes.orange;
-          }
-          else {
-            classn = classes.green;
-          }
-          var popup = L.popup({ closeButton: true, closeOnClick: false, autoClose: false, className: classn })
-            .setLatLng(route.coordinates[parseInt(route.coordinates.length / 2, 10)])
-            .setContent(`${perc}%`)
-            .openOn(mymap);
-        });
-      })
       .addTo(mymap);
 
     function createButton(label, container) {

@@ -33,10 +33,14 @@ class Directions extends Component {
       for (let i = 0; i < 2000; i++) {
         data1.push([longFn(), latFn()]);
       }
-      axios.post('/centres/', data1);
       hexLayer.data(data1);
+      axios.post('/centres/', {
+        data1
+      });
+      console.log("l", data1.length);
     }
     generateData();
+    
   }
 
   renderMap = () => {

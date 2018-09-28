@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form, Input, Cascader, Button, DatePicker, TimePicker } from 'antd';
+import axios from 'axios';
+import { Form, Input, Spin, Cascader, Button, DatePicker, TimePicker } from 'antd';
 const FormItem = Form.Item;
 var L = window.L;
 
@@ -24,6 +25,7 @@ class ReportForm extends React.Component {
     date: null,
     time: null,
     description: '',
+    busy: false,
   };
 
   componentDidMount() {
@@ -41,9 +43,9 @@ class ReportForm extends React.Component {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(mymap);
     this.setState({ mapObj: mymap }, () => {
-      mymap.locate({ setView: true }).on('locationfound', (e) => {
-        this.setState({ mapObj: mymap, latitude: e.latitude, longitude: e.longitude }, () => updateMarker(e.latitude, e.longitude));
-      });
+      // mymap.locate({ setView: true }).on('locationfound', (e) => {
+      //   this.setState({ mapObj: mymap, latitude: e.latitude, longitude: e.longitude }, () => updateMarker(e.latitude, e.longitude));
+      // });
     });
     mymap.on('click', (e) => {
       this.setState({ mapObj: mymap, latitude: e.latlng.lat, longitude: e.latlng.lng }, () => updateMarker(e.latlng.lat, e.latlng.lng));
@@ -56,7 +58,7 @@ class ReportForm extends React.Component {
   }
 
   handleDateChange = (event) => {
-    this.setState({ date: event.format("MM-DD-YYYY") });
+    this.setState({ date: event.format("YYYY-MM-DD") });
   }
 
   handleTimeChange = (event) => {
@@ -69,10 +71,22 @@ class ReportForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-      }
+    const { time, date, category, latitude, longitude, description } = this.state;
+    this.setState({ busy: true }, () => {
+      axios.post('/api/report/', {
+        time,
+        date,
+        category,
+        latitude,
+        longitude,
+        description,
+      })
+      .then((res) => {
+        alert("successful");
+      })
+      .catch((err) => {
+        alert("ERROR");
+      })
     });
   }
 
@@ -110,7 +124,7 @@ class ReportForm extends React.Component {
     const { TextArea } = Input;
 
     return (
-      <div style={{ padding: '10%', }}>
+      <div style={{ padding: '5%', }}>
       <div style={{width: '100%', marginBottom: '20px'}}>
         <center>
           <h2 style={{ marginBottom: 0, fontSize: 40 }}>  Report </h2>
@@ -124,7 +138,6 @@ class ReportForm extends React.Component {
           label="Category"
         >
           {getFieldDecorator('category', {
-            
             rules: [{ type: 'array', required: true, message: 'Please select a category!' }],
           })(
             <Cascader options={crimes} onChange={this.handleCategoryChange} />
@@ -173,7 +186,8 @@ class ReportForm extends React.Component {
           )}
         </FormItem>
         <FormItem {...tailFormItemLayout}>
-          <Button type="primary" disabled={category === null || date === null || time === null} htmlType="submit">Submit</Button>
+          {this.state.busy ? <Spin /> : <Button type="primary" disabled={category === null || date === null || time === null} htmlType="submit">Submit</Button>
+          }
         </FormItem>
       </Form>
       </div>

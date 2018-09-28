@@ -4,43 +4,27 @@ import '../App.css';
 var L = window.L;
 var d3 = window.d3;
 
-var data = {};
+var data = [];
+var heat = [];
+var hexLayer = null;
 
 class Directions extends Component {
   state = { mapObj: null, latitude: null, longitude: null };
 
   generateHexLayer = () => {
-    var center = [28.4880472, 77.0653845];
     var options = {
       opacity: 0.5,
     };
-    var hexLayer = L.hexbinLayer(options).addTo(this.state.mapObj);
+    hexLayer = L.hexbinLayer(options).addTo(this.state.mapObj);
     hexLayer.colorScale().range(['white', 'red']);
 
     hexLayer
       .radiusRange([12, 12])
       .lng(function (d) { return d[0]; })
       .lat(function (d) { return d[1]; })
-      .colorValue(function (d) { data[`${d[0].o[0] + d[0].o[0]}`] = d.length; return 1; })
+      .colorValue(function (d) { return heat[`${d[0].o[0] + d[0].o[1]}`]; })
       .radiusValue(function (d) { return d.length; });
-    console.log(data);
-
-    var latFn = d3.randomNormal(center[0], 0.01);
-    var longFn = d3.randomNormal(center[1], 0.01);
-
-    var generateData = function () {
-      var data1 = [];
-      for (let i = 0; i < 2000; i++) {
-        data1.push([longFn(), latFn()]);
-      }
-      hexLayer.data(data1);
-      axios.post('/centres/', {
-        data1
-      });
-      console.log("l", data1.length);
-    }
-    generateData();
-    
+    hexLayer.data(data);
   }
 
   renderMap = () => {
@@ -49,6 +33,16 @@ class Directions extends Component {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(mymap);
+    axios.get('/centres/')
+    .then((res) => {
+      res.data.map((hexagon) => {
+        data.push(hexagon.centre);
+        heat[`${hexagon.centre[0] + hexagon.centre[1]}`] = hexagon.heat; 
+      });
+      if(hexLayer) {
+        hexLayer.data(data);
+      }
+    })
     this.setState({ mapObj: mymap }, () => {
       this.generateHexLayer();
       // mymap.locate({ setView: true }).on('locationfound', (e) => {

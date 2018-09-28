@@ -21,6 +21,8 @@ from django.views.generic import TemplateView, RedirectView
 
 urlpatterns = [
     path('centres/', HexCentres.as_view()),
+    path('api/report/', ReportCrime.as_view()),
+    path('api/crimerate/', CrimeAtPointView.as_view()),
     path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
     path('<str>/', TemplateView.as_view(template_name="index.html"), name='frontend'),

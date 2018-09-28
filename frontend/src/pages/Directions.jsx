@@ -1,25 +1,7 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import '../App.css';
 var L = window.L;
 var d3 = window.d3;
-var google = window.google;
-
-const styles = theme => ({
-  map: {
-    width: '100%',
-    height: '100%',
-  },
-  red: {
-    backgroundColor: 'red',
-  },
-  green: {
-    backgroundColor: 'green',
-  },
-  orange: {
-    backgroundColor: 'orange',
-  }
-});
 
 var data = {};
 
@@ -56,7 +38,6 @@ class Directions extends Component {
   }
 
   renderMap = () => {
-    const { classes } = this.props;
     var mymap = L.map('mapid').setView([28.4880472, 77.0653845], 14);
     mymap.options.maxZoom = 15;
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -68,12 +49,8 @@ class Directions extends Component {
       //   this.setState({ mapObj: mymap, latitude: e.latitude, longitude: e.longitude });
       // });
     });
-
+    let c = 0;
     var control = L.Routing.control({
-      waypoints: [
-        L.latLng(28.491103, 77.074064),
-        L.latLng(28.509287, 77.041536)
-      ],
       router: new L.Routing.google({
         provideRouteAlternatives: true
       }),
@@ -82,8 +59,9 @@ class Directions extends Component {
       useZoomParameter: false,
       showAlternatives: true,
       addWaypoints: false,
-      routeLine: (route) => {
-        let lineColor = ['red', 'orange', 'green'][route.coordinates.length % 3];
+      routeLine: (route, i) => {
+        let lineColor = ['red', 'blue', 'green'][c % 3];
+        c++;
         let line = L.Routing.line(route, {
           styles: [
             {color: 'black', opacity: 0.15, weight: 9},
@@ -134,11 +112,11 @@ class Directions extends Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.map}>
-        <div id="mapid" className={classes.map}></div>
+      <div style={{width: '100%', height: '100%'}}>
+        <div id="mapid" style={{width: '100%', height: '100%'}}></div>
       </div>
     );
   }
 }
 
-export default withStyles(styles, { withTheme: true })(Directions);
+export default Directions;

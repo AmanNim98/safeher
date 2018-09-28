@@ -124,7 +124,7 @@ class ReportForm extends React.Component {
     const { TextArea } = Input;
 
     return (
-      <div style={{ padding: '5%', }}>
+      <div style={{ padding: '5%', height: '100%', width: '100%', backgroundColor: 'white' }}>
       <div style={{width: '100%', marginBottom: '20px'}}>
         <center>
           <h2 style={{ marginBottom: 0, fontSize: 40 }}>  Report </h2>

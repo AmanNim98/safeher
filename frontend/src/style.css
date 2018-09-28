@@ -1,0 +1,81 @@
+ @import url('https://fonts.googleapis.com/css?family=Roboto:200');
+body{
+	background:url("/static/women.jpg") no-repeat fixed center center;
+	background-size: cover;
+	background-position: center;
+}
+
+
+.buttons{
+	background-color: #e6e6e6; 
+	border: none;
+    color: black;
+    width: 600px;
+    padding: 40px 100px;
+    margin: 10px;
+    margin-bottom: 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 50px;
+    cursor: pointer;
+	transform: scale(1);
+	transform: translate(0px, 5px);
+	transition: all .8s ease;
+	font-family: 'Roboto', sans-serif;
+	letter-spacing: 0.2em;
+}
+.buttons1{
+	background-color: #e6e6e6; 
+	border: none;
+    color: black;
+    padding: 40px 180px;
+    width: 600px;
+    margin: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 50px;
+    cursor: pointer;
+	transform: scale(1);
+	transform: translate(0px, 5px);
+	transition: all .8s ease;
+	font-family: 'Roboto', sans-serif;
+	letter-spacing: 0.2em;
+}
+.buttons:hover{
+	background-color: red;
+	transition: all .8s ease;
+	color: white;
+	transform: scale(1.1) perspective(1px);
+
+}
+.buttons1:hover{
+	background-color: red;
+	color:white;
+	transition: all .8s ease;
+	transform: scale(1.1) perspective(1px);
+	
+}
+.left{
+	float: left;
+	margin-top: 20%;
+	margin-left: 10%;
+}
+
+.right{
+	float: right;
+	margin-top: 15%;
+	margin-right: 5%;
+}
+
+h1{
+	color: white;
+	font-family: Lucida Console, Courier, monospace;
+	font-size: 50px;
+}
+p{
+	color: white;
+	font-family: Lucida Console, Courier, monospace;
+	font-size: 30px;
+}

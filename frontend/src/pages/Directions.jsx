@@ -39,6 +39,8 @@ class Directions extends Component {
         data.push(hexagon.centre);
         heat[`${hexagon.centre[0] + hexagon.centre[1]}`] = hexagon.heat; 
       });
+      data.push([-70, -70]);
+      heat[-140] = 10;
       if(hexLayer) {
         hexLayer.data(data);
       }

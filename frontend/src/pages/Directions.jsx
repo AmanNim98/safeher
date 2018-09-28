@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import '../App.css';
 var L = window.L;
 var d3 = window.d3;
@@ -20,7 +21,7 @@ class Directions extends Component {
       .radiusRange([12, 12])
       .lng(function (d) { return d[0]; })
       .lat(function (d) { return d[1]; })
-      .colorValue(function (d) { data[`${d[0].o[0] + d[0].o[0]}`] = d.length; return d.length; })
+      .colorValue(function (d) { data[`${d[0].o[0] + d[0].o[0]}`] = d.length; return 1; })
       .radiusValue(function (d) { return d.length; });
     console.log(data);
 
@@ -32,9 +33,10 @@ class Directions extends Component {
       for (let i = 0; i < 2000; i++) {
         data1.push([longFn(), latFn()]);
       }
+      axios.post('/centres/', data1);
       hexLayer.data(data1);
     }
-    generateData()
+    generateData();
   }
 
   renderMap = () => {
@@ -60,7 +62,7 @@ class Directions extends Component {
       showAlternatives: true,
       addWaypoints: false,
       routeLine: (route, i) => {
-        let lineColor = ['red', 'blue', 'green'][c % 3];
+        let lineColor = ['red', 'orange', 'green'][c % 3];
         c++;
         let line = L.Routing.line(route, {
           styles: [

@@ -2,6 +2,5 @@ venv
 *.pyc
 staticfiles
 .env
-*.sqlite3
 assets
 webpack-stats.*

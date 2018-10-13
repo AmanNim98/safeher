@@ -1,4 +1,6 @@
-# PollutionMap
+# SafeHER
+
+Safest possible routes for women.
 
 ## Deploy
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
@@ -41,7 +43,6 @@ $ pipenv shell
 
 ```
 (env) $ cd ..
-(env) $ python manage.py migrate
 (env) $ python manage.py runserver
 ```
 
